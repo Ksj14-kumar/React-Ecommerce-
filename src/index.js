@@ -1,17 +1,41 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
+import { React } from 'react'
+
+import ReactDOM from 'react-dom'
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+
+import { Provider } from 'react-redux'
+import store from './Reducer/Store';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import "./index.css"
+import Products from './components/Products';
+import Cart from './components/Cart';
+
+
+
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+    <>
+        <Provider store={store}>
+            <BrowserRouter>
+                <App />
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+                <Switch>
+                    <Route exact path="/" component={Products} />
+                    <Route exact path="/cart" component={Cart} />
+                    <Route />
+
+
+                </Switch>
+
+            </BrowserRouter>
+
+
+
+
+        </Provider>
+    </>,
+    document.getElementById("root")
+)
+
