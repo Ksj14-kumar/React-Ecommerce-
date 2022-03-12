@@ -47,13 +47,13 @@ export const CartReducer = (state = { product: [], count: 0, total: 0 }, action 
                 })
             }
         case "COUNT_CART":
-            
+
             return {
                 ...state,
                 count: state.product.length
             }
         case "TOTAL_CART":
-           
+
             return {
                 ...state,
                 total: state.product.map((item) => {
@@ -61,7 +61,31 @@ export const CartReducer = (state = { product: [], count: 0, total: 0 }, action 
                 }).reduce((a, b) => a + b, 0)
             }
 
-       
+        case "INCREAMENT_QYT":
+            return {
+                ...state,
+                product: state.product.map((item) => {
+                    return item.id === action.id ? {
+                        ...item, qty: item.qty + 1,
+                        total: (item.qty + 1) * item.price
+                    } : item
+                })
+
+            }
+
+        case "DECREAMENT_QYT":
+            return {
+                ...state,
+                product: state.product.map((item) => {
+                    return item.id === action.id && item.qty > 1 ? {
+                        ...item, qty: item.qty - 1,
+                        total: (item.qty - 1) * item.price
+                    } : item
+                })
+
+            }
+
+
 
 
 

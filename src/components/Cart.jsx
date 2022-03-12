@@ -55,78 +55,95 @@ function Cart() {
 
                                     return (
 
-                                            <tr key={item.id}>
-                                                <td className='image'>
-                                                    <img src={item.image} alt=""  />
-                                                </td>
+                                        <tr key={item.id}>
+                                            <td className='image'>
+                                                <img src={item.image} alt="" />
+                                            </td>
 
 
 
-                                                <td style={{ width: "12rem", textAlign: "center" }}>{item.title}</td>
+                                            <td style={{ width: "12rem", textAlign: "center" }}>{item.title}</td>
 
 
-                                                <td style={{ textAlign: "center" }}>{item.price}</td>
-
-
-
-
-                                                <td style={{ textAlign: "center", display: "flex", alignItems: "center", alignContent: "center", marginTop: "2rem" }}>
-
-                                                    {/* <button
-                                                        onClick={() => {
-                                                            dispatch(
-                                                                {
-                                                                    type: "REDUCE_ITEMS",
+                                            <td style={{ textAlign: "center" }}>{item.price}</td>
 
 
 
-                                                                }
+
+                                            <td style={{ textAlign: "center", display: "flex", alignItems: "center", alignContent: "center", marginTop: "2rem" }}>
+
+                                                <button
+                                                    onClick={() => {
+                                                        dispatch(
+                                                            {
+                                                                type: "DECREAMENT_QYT",
+                                                                id: item.id
+                                                            }
 
 
-                                                            )
+                                                        )
+                                                        dispatch(CountCart())
+                                                        dispatch(TotalCart())
 
-                                                        }}
-                                                    >-</button> */}
-                                                    {/* <input type="number" name="num" id="" /> */}
-                                                    <h3 style={{ margin: "0 8px" }}>
-                                                        {item.qty}
-                                                    </h3>
-                                                    {/* <button
-                                                        onClick={() => {
-                                                            dispatch(AddCart({ ...item, qty: 1, }))
-
-                                                        }}
-
-                                                    >+</button> */}
-
-                                                </td>
+                                                    }}
+                                                >-</button>
+                                                {/* <input type="number" value={item.qty} name="num" id="" /> */}
+                                                <h3 style={{ margin: "0 8px" }}>
+                                                    {item.qty}
+                                                </h3>
+                                                <button
+                                                    onClick={() => {
 
 
-
-                                                <td style={{ textAlign: "center" }}>{item.total}</td>
+                                                        dispatch(
+                                                            {
+                                                                type: "INCREAMENT_QYT",
+                                                                id: item.id
 
 
 
-                                                <td style={{ textAlign: "center", fontSize: "1.5rem" }}>
-                                                    <button style={{ background: "none", cursor: "pointer" }}
-                                                        onClick={() => {
+                                                            }
+                                                        )
+                                                        dispatch(CountCart())
+                                                        dispatch(TotalCart())
 
-                                                            dispatch({ type: "REMOVE_FROM_CART", id: item.id })
+                                                    }}
 
-                                                            dispatch(CountCart())
-                                                            dispatch(TotalCart())
+                                                >+</button>
 
-
-                                                        }}
-                                                    >
-                                                        <MdDelete />
-
-                                                    </button>
+                                            </td>
 
 
-                                                </td>
 
-                                            </tr>
+                                            <td style={{ textAlign: "center" }}>{
+                                                Math.round(
+                                                    item.total
+
+                                                )
+                                            }</td>
+
+
+
+                                            <td style={{ textAlign: "center", fontSize: "1.5rem" }}>
+                                                <button style={{ background: "none", cursor: "pointer" }}
+                                                    onClick={() => {
+
+                                                        dispatch({ type: "REMOVE_FROM_CART", id: item.id })
+
+                                                        dispatch(CountCart())
+                                                        dispatch(TotalCart())
+
+
+                                                    }}
+                                                >
+                                                    <MdDelete />
+
+                                                </button>
+
+
+                                            </td>
+
+                                        </tr>
 
 
 
