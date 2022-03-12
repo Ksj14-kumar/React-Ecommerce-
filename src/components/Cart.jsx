@@ -65,7 +65,7 @@ function Cart() {
                                             <td style={{ width: "12rem", textAlign: "center" }}>{item.title}</td>
 
 
-                                            <td style={{ textAlign: "center" }}>{item.price}</td>
+                                            <td style={{ textAlign: "center" }}>{item.price.toFixed(2)}</td>
 
 
 
@@ -116,10 +116,10 @@ function Cart() {
 
 
                                             <td style={{ textAlign: "center" }}>{
-                                                Math.round(
-                                                    item.total
 
-                                                )
+                                                item.total.toFixed(2)
+
+
                                             }</td>
 
 
@@ -172,7 +172,7 @@ function Cart() {
                         <h3 style={{ textAlign: "center", textDecoration: "underline", marginBottom: "1rem" }}>Grand Total</h3>
 
                         <h5>Total Items:  {countData}</h5>
-                        <h5>Total Price:  $ {Math.round(cardAddedItem.total, 5)}</h5>
+                        <h5>Total Price:  $ {cardAddedItem.total.toFixed(2)}</h5>
 
                         <button className='checkout' >CheckOut</button>
                         <br />

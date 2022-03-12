@@ -11,7 +11,7 @@ import bindProductCart from '../Reducer/products/Actions';
 function Products() {
     const [products, setProducts] = useState([])
     const productData = useSelector((state) => {
-        return state.product
+        return state.product 
     })
 
     const { AddCart, EmptyCart, CountCart, TotalCart } = bindActionCart
