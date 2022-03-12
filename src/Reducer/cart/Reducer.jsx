@@ -77,7 +77,7 @@ export const CartReducer = (state = { product: [], count: 0, total: 0 }, action 
             return {
                 ...state,
                 product: state.product.map((item) => {
-                    return item.id === action.id && item.qty > 1 ? {
+                    return item.id === action.id && item.qty > 1  ? {
                         ...item, qty: item.qty - 1,
                         total: (item.qty - 1) * item.price
                     } : item

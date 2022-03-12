@@ -1,4 +1,5 @@
-
+import { bindActionCreators } from "redux"
+import store from '../Store';
 
 
 export const AddCart = (product) => {
@@ -35,3 +36,12 @@ export const TotalCart = () => {
         type: "TOTAL_CART"
     }
 }
+
+
+
+const bindCartAction = bindActionCreators({
+    AddCart, RemoveFromCart,
+    EmptyCart, CountCart, TotalCart
+}, store.dispatch)
+
+export default bindCartAction;

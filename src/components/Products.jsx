@@ -4,13 +4,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { v4 } from 'uuid'
 import { Inc } from '../actions/Actions';
 
-import { AddCart, CountCart, TotalCart } from '../Reducer/cart/Action';
+import bindActionCart from '../Reducer/cart/Action';
+
+import bindProductCart from '../Reducer/products/Actions';
 
 function Products() {
     const [products, setProducts] = useState([])
     const productData = useSelector((state) => {
         return state.product
     })
+
+    const { AddCart, EmptyCart, CountCart, TotalCart } = bindActionCart
+    const { Fetch_Products } = bindProductCart
 
 
 
@@ -26,7 +31,8 @@ function Products() {
             const res = await fetch("https://fakestoreapi.com/products")
             const data = await res.json()
             // setProducts(data)
-            dispatch({ type: "GET_PRODUCT", payload: data })
+            Fetch_Products(data)
+
 
 
         }
@@ -65,22 +71,18 @@ function Products() {
                                     <h5>
                                         <button id='AddShoppingCart'
                                             onClick={() => {
-                                                //dispatch({ type: "INC" })
-
-
-
-                                                dispatch(AddCart({ ...item, qty: 1, total: item.price }))
-
-                                                dispatch(CountCart())
-                                                dispatch(TotalCart())
 
 
 
 
+                                                // dispatch(AddCart({ ...item, qty: 1, total: item.price }))
 
+                                                // dispatch(CountCart())
+                                                // dispatch(TotalCart())
 
-                                                // dispatch({ type: "CART_PRODUCT", payload: { ItemDetail: item, qut: { total: 0 } } })
-
+                                                AddCart({ ...item, qty: 1, total: item.price })
+                                                CountCart()
+                                                TotalCart()
 
                                             }}
                                         >
